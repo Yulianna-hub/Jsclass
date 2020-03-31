@@ -53,9 +53,9 @@ let days = 30;
 let budgetDay = budgetMonth / days;
 console.log('Бюджен на день: ' + budgetDay + ' Є');
 
-    if (budgetDay > 170) {
+    if (budgetDay >= 170) {
         console.log('У вас высокий уровень дохода.');
-    } else if (  budgetDay < 170 &&  budgetDay > 85) {
+    } else if (  budgetDay < 170 &&  budgetDay >= 85) {
         console.log('У вас средний уровень дохода.'); 
     } else if (85 < budgetDay) {
         console.log('К сожалению у вас уровень дохода ниже среднего.');
