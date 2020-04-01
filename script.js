@@ -24,23 +24,16 @@ showTypeOf(money);
 showTypeOf(deposit);
 
 let expenses1 = prompt('Введите обязательную статью расходов?');
-console.log(expenses1);
-
 let amount1 = prompt('Во сколько это обойдется?');
-console.log(amount1);
 
 let expenses2 = prompt('Введите обязательную статью расходов?');
-console.log(expenses2);
-
 let amount2 = prompt('Во сколько это обойдется?');
-console.log(amount2);
 
 function getExpensesMonth (a, b){
     return Number(amount2) + Number(amount1);
 }
 getExpensesMonth(amount1, amount2);
 console.log(getExpensesMonth());
-
 
 /*6) Вычислить бюджет на месяц, учитывая обязательные расходы, сохранить в новую переменную budgetMonth
 и вывести результат в консоль*/
@@ -50,7 +43,6 @@ function getAccumulatedMonth (a, b, c, d) {
 }
 getAccumulatedMonth(amount1, amount2, money, income);
 console.log(accumulatedMonth);
-
 
 /*7) Зная budgetMonth, посчитать за сколько месяцев будет достигнута цель mission, 
 вывести в консоль, округляя в большую сторону (методы объекта Math в помощь) */
