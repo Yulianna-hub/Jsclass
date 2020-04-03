@@ -53,15 +53,15 @@ console.log('Цель будет достигнута за ' + getTargetMonth() 
 let days = 30;    
 let budgetDay = accumulatedMonth / days;
 console.log('Бюджен на день: ' + budgetDay + ' Є');
-let getStatusIncome = function name(params) {
+let getStatusIncome = function() {
     
     if (budgetDay >= 170) {
         return ('У вас высокий уровень дохода.');
-    } else if (budgetDay < 170 && budgetDay >= 85) {
+    } else if (budgetDay < 170 && budgetDay > 85) {
         return ('У вас средний уровень дохода.'); 
-    } else if (budgetDay < 85) {
+    } else if (85 <= budgetDay) {
         return ('К сожалению у вас уровень дохода ниже среднего.');
-    } else if (budgetDay < 0) {
+    } else if (0 >= budgetDay) {
         return ('Что то пошло не так.');
     } 
 };
