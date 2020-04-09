@@ -4,7 +4,7 @@ let isNumber = function(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }; 
 let isstring = function(m) {
-     return isNaN(m) || m === '' || m === null;
+     return isNaN(m) || m !== '' || m === null;
 };
 
 let money;
