@@ -110,7 +110,7 @@ let appData = {
 
       
 for (const key in appData) {
-   // console.log('Наша программа включает в себя данные: ' +  key + ': ' + appData[key]);
+   console.log('Наша программа включает в себя данные: ' +  key + ': ' + appData[key]);
 }
 
 appData.asking();
