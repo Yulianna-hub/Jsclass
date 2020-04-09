@@ -45,15 +45,12 @@ let appData = {
         let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую.', 'путишуствие, Дом, машина, Квартира');
         appData.addExpenses = addExpenses.toLowerCase().split(',');
         console.log(appData.addExpenses);
-        
-        for (const key of appData.addExpenses) {
-            console.log((addExpenses[0]).toUpperCase() + addExpenses.slice(1));
-        }
-        /*for (let i = 0; i < appData.addExpenses.length; i++) {
-            console.log((addExpenses[0]).toUpperCase() + addExpenses.slice(1));
 
-        }*/
-        
+        let str = appData.addExpenses;
+        for (let i = 0; i < str.length; i++) {
+            console.log(str[0].toUpperCase() + str.slice(1));
+
+        }
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
         console.log(typeof appData.deposit);
         appData.income = prompt('Ваш дополнительный вид дохода?', 'Девиденды');
