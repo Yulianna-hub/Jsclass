@@ -4,7 +4,7 @@ let isNumber = function(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }; 
 let isstring = function(m) {
-     return isNaN(m) || m === '' || m === null;
+     return isNaN(m) || m !== '' || m === null;
 };
 
 let money;
@@ -42,7 +42,7 @@ let appData = {
             appData.income[itemIncome] = cashIncome;
         }
 
-        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую.', 'путишуствие, дом, машина');
+        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую.', 'Путишуствие, Дом, Машина');
         appData.addExpenses = addExpenses.toLowerCase().split(',');
         console.log(appData.addExpenses);
         console.log(String(addExpenses).toUpperCase());
@@ -76,9 +76,7 @@ let appData = {
 
     },
     getTargetMonth: function() {  
-        return appData.mission / appData.budgetMonth;
-        
-        
+        return appData.mission / appData.budgetMonth;    
     },
     getStatusIncome: function() {
 
