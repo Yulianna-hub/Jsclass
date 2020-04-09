@@ -42,10 +42,18 @@ let appData = {
             appData.income[itemIncome] = cashIncome;
         }
 
-        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую.', 'путишуствие, дом, машина');
+        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую.', 'путишуствие, Дом, машина, Квартира');
         appData.addExpenses = addExpenses.toLowerCase().split(',');
         console.log(appData.addExpenses);
-        console.log(String(addExpenses).toUpperCase());
+        
+        for (const key of appData.addExpenses) {
+            console.log((addExpenses[0]).toUpperCase() + addExpenses.slice(1));
+        }
+        /*for (let i = 0; i < appData.addExpenses.length; i++) {
+            console.log((addExpenses[0]).toUpperCase() + addExpenses.slice(1));
+
+        }*/
+        
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
         console.log(typeof appData.deposit);
         appData.income = prompt('Ваш дополнительный вид дохода?', 'Девиденды');
@@ -110,7 +118,7 @@ let appData = {
 
       
 for (const key in appData) {
-   console.log('Наша программа включает в себя данные: ' +  key + ': ' + appData[key]);
+   //console.log('Наша программа включает в себя данные: ' +  key + ': ' + appData[key]);
 }
 
 appData.asking();
