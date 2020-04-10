@@ -46,7 +46,7 @@ let appData = {
         appData.addExpenses = addExpenses.toLowerCase().split(',');
         console.log(appData.addExpenses);
 
-        let strExp= {};
+        let strExp= '';
         for (let str of appData.addExpenses) {
             str = str.trim();
             strExp = ((str[0].toUpperCase() + str.slice(1))+ ', ');
