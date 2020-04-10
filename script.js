@@ -1,5 +1,54 @@
 ' use strict ';
 
+const startButt = document.getElementById('start'),
+salaryAmount = document.querySelector('.salary-amount'),
+incomePlus = document.getElementsByTagName('button')[0],
+
+expensesPlus = document.getElementsByTagName('button')[1],
+incomeItem = document.querySelectorAll('.additional_income-item'),
+expenItemm = document.querySelector('.additional_expenses-item'),
+depositCheck = document.querySelector('#deposit-check'),
+
+incomeTitle = document.querySelector('.income-title'),
+incomeAmount = document.querySelector('.income-amount'),
+expensesTitle = document.querySelector('.expenses-title'),
+expensesAmount = document.querySelector('.expenses-amount'),
+
+targetAmount = document.querySelector('.target-amount'),
+periodSelect = document.querySelector('.period-select'),
+//part right
+budgetMonthValue = document.querySelector('.budget_month-value'),
+budgetDayValue = document.getElementsByClassName('.budget_day-value'),
+expensesMonthValue = document.getElementsByClassName('.expenses_month-value'),
+additionalIncomeValue = document.getElementsByClassName('.additional_income-value'),
+additionalExpensesValue = document.getElementsByClassName('.additional_expenses-value'),
+incomePeriodValue = document.getElementsByClassName('.income_period-value'), 
+targetMonthValue = document.getElementsByClassName('.target_month-value');
+console.log(startButt);
+console.log(salaryAmount);
+console.log(incomePlus);
+
+console.log(expensesPlus);
+console.log(incomeItem);
+console.log(expenItemm);
+console.log(depositCheck);
+
+console.log(incomeTitle);
+console.log(incomeAmount);
+console.log(expensesTitle);
+console.log(expensesAmount);
+
+console.log(targetAmount);
+console.log(periodSelect);
+
+console.log(budgetMonthValue);
+console.log(budgetDayValue);
+console.log(expensesMonthValue);
+console.log(additionalIncomeValue);
+console.log(additionalExpensesValue);
+console.log(incomePeriodValue);
+console.log(targetMonthValue);
+
 let isNumber = function(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }; 
@@ -15,7 +64,6 @@ let start = function() {
 };
 start();
 
-
 let appData = {
     budgetDay: 0,
     budgetMonth: 0,
@@ -29,7 +77,7 @@ let appData = {
     percentDeposit: 0,
     moneyDeposit: 0,
     mission:  735000,
-    period: 0,
+    period: 24,
     asking: function() {
         if (confirm('Есть ли у вас дополнительный источник заработка?')) {
             let itemIncome = {};
@@ -43,17 +91,17 @@ let appData = {
             appData.income[itemIncome] = cashIncome;
         }
 
-        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую.', 'Путишуствие, Дом, Машина');
+        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую.', 'путишуствие, Дом, машина, квартира');
         appData.addExpenses = addExpenses.toLowerCase().split(',');
         console.log(appData.addExpenses);
 
-        let strExp= {};
+        let strExp= '';
         for (let str of appData.addExpenses) {
             str = str.trim();
             strExp += ((str[0].toUpperCase() + str.slice(1))+ ', ');
         }
         console.log(strExp);
-
+         
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
         console.log(typeof appData.deposit);
         appData.income = prompt('Ваш дополнительный вид дохода?', 'Девиденды');
@@ -84,7 +132,8 @@ let appData = {
 
     },
     getTargetMonth: function() {  
-        return appData.mission / appData.budgetMonth;    
+        return appData.mission / appData.budgetMonth;
+            
     },
     getStatusIncome: function() {
 
@@ -111,10 +160,12 @@ let appData = {
     calcSaveMoney: function() {
         return appData.budgetMonth * appData.period;
     }
+
 };
 
+      
 for (const key in appData) {
-   //console.log('Наша программа включает в себя данные: ' +  key + ': ' + appData[key]);
+  console.log('Наша программа включает в себя данные: ' +  key + ': ' + appData[key]);
 }
 
 appData.asking();
@@ -125,9 +176,9 @@ appData.getBudget();
 console.log('Месячный бюджет: ' + appData.budgetMonth);
 console.log('Бюджен на день: ' + appData.budgetDay + ' Є');
 
-let missionPeriod = Math.ceil(appData.getTargetMonth());
+appData.getTargetMonth();
 if (appData.budgetMonth > 0) {
-    console.log('Цель будет достигнута за ' + missionPeriod + ' месяцев.');
+    console.log('Цель будет достигнута за ' + Math.ceil(appData.getTargetMonth()) + ' месяцев.');
 } else if (appData.budgetMonth <= 0) {
     console.log('Цель не будет достигнута.');  
 }
@@ -136,29 +187,11 @@ appData.getStatusIncome();
 console.log(appData.getStatusIncome());
 
 appData.getInfoDeposit();
-let incomePeriod = appData.calcSaveMoney();
-console.log(appData.percentDeposit, appData.moneyDeposit, incomePeriod);
+appData.calcSaveMoney();
 
-appData.budget = document.querySelector('.salary-amount');
-appData.income = document.getElementsByTagName('button');
-appData.expenses = document.getElementsByTagName('button');
-appData.income = document.querySelectorAll('.additional_income-item');
-appData.deposit = document.querySelector('#deposit-check');
-appData.expenses = document.querySelector('.income-title');
-appData.expenses = document.querySelector('.income-amount');
-appData.income = document.querySelectorAll('.additional_income-item');
-appData.mission = document.querySelector('.target-amount');
-appData.period = document.querySelector('.period-select');
+console.log(appData.percentDeposit, appData.moneyDeposit, appData.calcSaveMoney());
 
-//part right
-appData.budgetMonth = document.querySelector('.budget_month-value');
-appData.budgetDay = document.getElementsByClassName('.budget_day-value');
-appData.expensesMonth = document.getElementsByClassName('.expenses_month-value');
-appData.income = document.getElementsByClassName('.additional_income-value');
-appData.addExpenses = document.getElementsByClassName('.additional_expenses-value');
-incomePeriod = document.getElementsByClassName('.income_period-value');   
-appData.period = document.getElementsByClassName('.target_month-value');
-start = document.getElementById('start');
+
 
  
 
