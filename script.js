@@ -1,6 +1,7 @@
 ' use strict ';
 
 const startButt = document.getElementById('start'),
+canselButt = document.querySelector('#cancel'),
 salaryAmount = document.querySelector('.salary-amount'),
 incomePlus = document.getElementsByTagName('button')[0],
 
@@ -25,6 +26,7 @@ additionalExpensesValue = document.getElementsByClassName('.additional_expenses-
 incomePeriodValue = document.getElementsByClassName('.income_period-value'), 
 targetMonthValue = document.getElementsByClassName('.target_month-value');
 console.log(startButt);
+console.log(canselButt);
 console.log(salaryAmount);
 console.log(incomePlus);
 
