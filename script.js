@@ -49,9 +49,9 @@ let appData = {
         let strExp= {};
         for (let str of appData.addExpenses) {
             str = str.trim();
-            strExp = ((str[0].toUpperCase() + str.slice(1))+ ', ') ;
+            strExp = ((str[0].toUpperCase() + str.slice(1))+ ', ');
         }
-        console.log( strExp);
+        console.log(strExp);
          
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
         console.log(typeof appData.deposit);
@@ -116,7 +116,7 @@ let appData = {
 
       
 for (const key in appData) {
-   //console.log('Наша программа включает в себя данные: ' +  key + ': ' + appData[key]);
+   console.log('Наша программа включает в себя данные: ' +  key + ': ' + appData[key]);
 }
 
 appData.asking();
