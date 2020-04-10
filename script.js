@@ -15,6 +15,7 @@ let start = function() {
 };
 start();
 
+
 let appData = {
     budgetDay: 0,
     budgetMonth: 0,
@@ -45,7 +46,14 @@ let appData = {
         let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую.', 'Путишуствие, Дом, Машина');
         appData.addExpenses = addExpenses.toLowerCase().split(',');
         console.log(appData.addExpenses);
-        console.log(String(addExpenses).toUpperCase());
+
+        let strExp= {};
+        for (let str of appData.addExpenses) {
+            str = str.trim();
+            strExp = ((str[0].toUpperCase() + str.slice(1))+ ', ');
+        }
+        console.log(strExp);
+
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
         console.log(typeof appData.deposit);
         appData.income = prompt('Ваш дополнительный вид дохода?', 'Девиденды');
@@ -103,12 +111,24 @@ let appData = {
     calcSaveMoney: function() {
         return appData.budgetMonth * appData.period;
     }
-
 };
+
+start = document.getElementById('start');
+appData.income = document.getElementsByTagName('button')[0];
+appData.expenses = document.getElementsByTagName('button')[1];
+appData.deposit = document.querySelector('#deposit-check');
+
+appData.budgetDay = document.getElementsByClassName('.budget_day-value');
+appData.expensesMonth = document.getElementsByClassName('.expenses_month-value');
+appData.income = document.getElementsByClassName('.additional_income-value');
+appData.addExpenses = document.getElementsByClassName('.additional_expenses-value');
+    = document.getElementsByClassName('.income_period-value');   
+appData.budgetMonth = document.getElementsByClassName('.target_month-value');
+
 
       
 for (const key in appData) {
-   console.log('Наша программа включает в себя данные: ' +  key + ': ' + appData[key]);
+   //console.log('Наша программа включает в себя данные: ' +  key + ': ' + appData[key]);
 }
 
 appData.asking();
@@ -122,7 +142,7 @@ console.log('Бюджен на день: ' + appData.budgetDay + ' Є');
 appData.getTargetMonth();
 if (appData.budgetMonth > 0) {
     console.log('Цель будет достигнута за ' + Math.ceil(appData.getTargetMonth()) + ' месяцев.');
-} else if (appData.targetMonth <= 0) {
+} else if (appData.budgetMonth <= 0) {
     console.log('Цель не будет достигнута.');  
 }
 
