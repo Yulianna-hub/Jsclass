@@ -130,7 +130,7 @@ console.log('Бюджен на день: ' + appData.budgetDay + ' Є');
 appData.getTargetMonth();
 if (appData.budgetMonth > 0) {
     console.log('Цель будет достигнута за ' + Math.ceil(appData.getTargetMonth()) + ' месяцев.');
-} else if (appData.targetMonth <= 0) {
+} else if (appData.budgetMonth <= 0) {
     console.log('Цель не будет достигнута.');  
 }
 
