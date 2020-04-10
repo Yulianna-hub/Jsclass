@@ -42,14 +42,14 @@ let appData = {
             appData.income[itemIncome] = cashIncome;
         }
 
-        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую.', 'путишуствие, Дом, машина, Квартира');
+        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую.', 'путишуствие, Дом, машина, квартира');
         appData.addExpenses = addExpenses.toLowerCase().split(',');
         console.log(appData.addExpenses);
 
         let strExp= '';
         for (let str of appData.addExpenses) {
             str = str.trim();
-            strExp = ((str[0].toUpperCase() + str.slice(1))+ ', ');
+            strExp += ((str[0].toUpperCase() + str.slice(1))+ ', ');
         }
         console.log(strExp);
          
