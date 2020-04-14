@@ -41,6 +41,7 @@ let appData = {
     budgetDay: 0,
     budgetMonth: 0,
     expensesMonth: 0,
+    incomeMonth: 0,
     budget: 0,
     income: {},
     addIncome: [],
@@ -50,22 +51,25 @@ let appData = {
     percentDeposit: 0,
     moneyDeposit: 0,
     start: function() {
-        if (salaryAmount.value === '') {
-            alert('Ошибка, поле "Месячный доход" должна быть заполнено!');
-            return;
-        }
+      
         appData.budget = +salaryAmount.value;
-        
-        appData.getTargetMonth();
-        appData.calcSaveMoney();
-        appData.InputTypeRange();
-
+    
         appData.getIncome();
+        appData.getIncomeMonth();
+        appData.getAddIncome();
+
+        appData.getExpenses();
         appData.getExpensesMonth();
         appData.getAddExpenses();
-        appData.getAddIncome();
+        
         appData.getBudget();
         appData.showResult();
+        
+        if (salaryAmount.value === ''){
+            startButt.disabled = true;
+         } else {
+             startButt.disabled = false;
+         }
     },
 
     showResult: function() {
@@ -76,7 +80,12 @@ let appData = {
         additionalIncomeValue.value = appData.addIncome.join(', ');
         targetMonthValue.value = Math.ceil(appData.getTargetMonth());
         incomePeriodValue.value = appData.calcSaveMoney();
-        periodAmount.value =  appData.InputTypeRange();
+        periodAmount.value = periodSelect.value;
+
+        periodSelect.addEventListener('change', appData.chengeSaveMoney);  
+    },
+    chengeSaveMoney: function() {
+        incomePeriodValue.value = appData.calcSaveMoney();
     },
     addExpensesBlock: function() {
         let cloneExpensesItem = expensesItems[0].cloneNode(true);
@@ -98,6 +107,7 @@ let appData = {
         });
     },
     getAddExpenses: function() {
+            appData.addExpenses = [];
         let addExpenses = additExpenItemm.value.split(',');
         addExpenses.forEach(function(item){
             item = item.trim();
@@ -125,6 +135,7 @@ let appData = {
         });
      },
      getAddIncome: function() {
+        appData.addIncome = [];
         additionalIncomeItem.forEach(function(item){
             let itemValue = item.value.trim();
             if (itemValue !== ''){
@@ -132,6 +143,12 @@ let appData = {
             }
         });
      },
+     getIncomeMonth: function() { 
+        
+        for (let key in appData.income) {
+            appData.incomeMonth += +appData.income[key];
+        }
+    },    
     getExpensesMonth: function() { 
         
         for (let key in appData.expenses) {
@@ -139,7 +156,7 @@ let appData = {
         }
     },    
     getBudget: function() {
-        appData.budgetMonth = appData.budget - appData.expensesMonth;
+        appData.budgetMonth = appData.budget + appData.incomeMonth - appData.expensesMonth;
         appData.budgetDay = appData.budgetMonth / 30;
 
     },
@@ -172,14 +189,12 @@ let appData = {
         }
     },
     calcSaveMoney: function() {
-        return appData.budgetMonth * periodSelect.value;
+        return appData.budget * periodSelect.value;
     },
-    InputTypeRange: function() {
-        let rang = 0;
-      /*  for (let i = 0; i <= 18; i++) {
-        
-    }*/
-    console.log(rang);
+    inputTypeRange: function(event) {
+    document.querySelector('.period-amount').textContent = (event.target.value);
+    console.log(event.target.value);
+
     }
 
 };
@@ -188,23 +203,8 @@ startButt.addEventListener('click', appData.start);
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click',  appData.addIncomeBlock);
 
-periodSelect.addEventListener('input', appData.InputTypeRange);
+periodSelect.addEventListener('change', appData.inputTypeRange);
 
-      
-for (const key in appData) {
-  //console.log('Наша программа включает в себя данные: ' +  key + ': ' + appData[key]);
-}
-
-//appData.getStatusIncome();
-//appData.getInfoDeposit();
-/*if (appData.budgetMonth > 0) {
-    console.log('Цель будет достигнута за ' + Math.ceil(appData.getTargetMonth()) + ' месяцев.');
-} else if (appData.budgetMonth <= 0) {
-    console.log('Цель не будет достигнута.');  
-}*/
-
-
-//console.log(appData.percentDeposit, appData.moneyDeposit, appData.calcSaveMoney());
 
 
 
