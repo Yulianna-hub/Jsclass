@@ -1,7 +1,7 @@
 ' use strict ';
 
 let startButt = document.getElementById('start'),
-//canselButt = document.querySelector('#cancel'),
+canselButt = document.querySelector('#cancel'),
 salaryAmount = document.querySelector('.salary-amount'),
 incomePlus = document.getElementsByTagName('button')[0],
 
@@ -19,6 +19,7 @@ incomeItemms = document.querySelectorAll('.income-items'),
 
 targetAmount = document.querySelector('.target-amount'),
 periodSelect = document.querySelector('.period-select'),
+periodAmount = document.querySelector('.period-amount');
 //part right
 budgetMonthVallue = document.querySelector('.budget_month-value'),
 budgetDayValue = document.querySelector('.budget_day-value'),
@@ -57,6 +58,7 @@ let appData = {
         
         appData.getTargetMonth();
         appData.calcSaveMoney();
+        appData.InputTypeRange();
 
         appData.getIncome();
         appData.getExpensesMonth();
@@ -74,6 +76,7 @@ let appData = {
         additionalIncomeValue.value = appData.addIncome.join(', ');
         targetMonthValue.value = Math.ceil(appData.getTargetMonth());
         incomePeriodValue.value = appData.calcSaveMoney();
+        periodAmount.value =  appData.InputTypeRange();
     },
     addExpensesBlock: function() {
         let cloneExpensesItem = expensesItems[0].cloneNode(true);
@@ -132,11 +135,11 @@ let appData = {
     getExpensesMonth: function() { 
         
         for (let key in appData.expenses) {
-            appData.expensesMonth = +appData.expenses[key];
+            appData.expensesMonth += +appData.expenses[key];
         }
     },    
     getBudget: function() {
-        appData.budgetMonth = appData.budget + Number(appData.income) - appData.expensesMonth;
+        appData.budgetMonth = appData.budget - appData.expensesMonth;
         appData.budgetDay = appData.budgetMonth / 30;
 
     },
@@ -170,6 +173,13 @@ let appData = {
     },
     calcSaveMoney: function() {
         return appData.budgetMonth * periodSelect.value;
+    },
+    InputTypeRange: function() {
+        let rang = 0;
+      /*  for (let i = 0; i <= 18; i++) {
+        
+    }*/
+    console.log(rang);
     }
 
 };
@@ -177,6 +187,9 @@ let appData = {
 startButt.addEventListener('click', appData.start);
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click',  appData.addIncomeBlock);
+
+periodSelect.addEventListener('input', appData.InputTypeRange);
+
       
 for (const key in appData) {
   //console.log('Наша программа включает в себя данные: ' +  key + ': ' + appData[key]);
@@ -191,7 +204,7 @@ for (const key in appData) {
 }*/
 
 
-console.log(appData.percentDeposit, appData.moneyDeposit, appData.calcSaveMoney());
+//console.log(appData.percentDeposit, appData.moneyDeposit, appData.calcSaveMoney());
 
 
 
