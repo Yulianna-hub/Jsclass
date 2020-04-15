@@ -204,8 +204,11 @@ salaryAmount.addEventListener('input', function() {
          startButt.disabled = false;
      }
 });
-
-
+//версия 2, чуть короче
+/*salaryAmount.addEventListener('input', function() {
+startButt.disabled = salaryAmount.value === '';
+});
+ */
 
 
  
