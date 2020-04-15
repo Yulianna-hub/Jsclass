@@ -63,15 +63,8 @@ let appData = {
         appData.getAddExpenses();
         
         appData.getBudget();
-        appData.showResult();
-        
-        if (salaryAmount.value === ''){
-            startButt.disabled = true;
-         } else {
-             startButt.disabled = false;
-         }
+        appData.showResult();   
     },
-
     showResult: function() {
         budgetMonthVallue.value = appData.budgetMonth;
         budgetDayValue.value =  Math.ceil(appData.budgetDay);
@@ -102,7 +95,7 @@ let appData = {
             let itemExpenses = item.querySelector('.expenses-title').value;
             let cashExpenses = item.querySelector('.expenses-amount').value;
             if(itemExpenses !== '' && cashExpenses !== '') {
-                appData.expenses[itemExpenses] = cashExpenses;
+                appData.expenses[itemExpenses] = + cashExpenses;
             }
         });
     },
@@ -130,7 +123,7 @@ let appData = {
                 let itemIncome = item.querySelector('.income-title').value;
                 let cashIncome = item.querySelector('.income-amount').value;
                 if(itemIncome!== '' && cashIncome !== '') {
-                    appData.income[itemIncome] = +cashIncome;
+                    appData.income[itemIncome] = + cashIncome;
                 }          
         });
      },
@@ -146,13 +139,13 @@ let appData = {
      getIncomeMonth: function() { 
         
         for (let key in appData.income) {
-            appData.incomeMonth += +appData.income[key];
+            appData.incomeMonth += + appData.income[key];
         }
     },    
     getExpensesMonth: function() { 
         
         for (let key in appData.expenses) {
-            appData.expensesMonth += +appData.expenses[key];
+            appData.expensesMonth += + appData.expenses[key];
         }
     },    
     getBudget: function() {
@@ -189,7 +182,7 @@ let appData = {
         }
     },
     calcSaveMoney: function() {
-        return appData.budget * periodSelect.value;
+        return appData.budgetMonth * periodSelect.value;
     },
     inputTypeRange: function(event) {
     document.querySelector('.period-amount').textContent = (event.target.value);
@@ -202,8 +195,15 @@ let appData = {
 startButt.addEventListener('click', appData.start);
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click',  appData.addIncomeBlock);
-
 periodSelect.addEventListener('change', appData.inputTypeRange);
+
+salaryAmount.addEventListener('input', function() {
+    if (salaryAmount.value === ''){
+        startButt.disabled = true;
+     } else {
+         startButt.disabled = false;
+     }
+});
 
 
 
