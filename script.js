@@ -56,6 +56,8 @@ let appData = {
         }, this);
     },
     start: function() {
+        startButt.style.display = 'none';
+        canselButt.style.display = 'block';
 
         appData.budget = +salaryAmount.value;
     
@@ -72,9 +74,7 @@ let appData = {
          
     },
     
-    showResult: function() {
-        
-        
+    showResult: function() { 
         budgetMonthVallue.value = this.budgetMonth;
         budgetDayValue.value =  Math.ceil(this.budgetDay);
         expensesMonthValue.value = this.expensesMonth;
@@ -196,46 +196,21 @@ let appData = {
     inputTypeRange: function(event) {
     document.querySelector('.period-amount').textContent = (event.target.value);
 
-    }
-    
+    },
+    cancelCalckRes:  function() {
+        canselButt.style.display = 'none';
+        startButt.style.display = 'block';
+        location.reload();
+    }  
 };
-
-
 startButt.addEventListener('click', appData.start);
-
-
-//textInputs.addEventListener('clik', disebInputs());
-canselButt.addEventListener('click', function() {
-    let desabDatalInputs = document.querySelector('.data');
-    let textInputs = desabDatalInputs.querySelectorAll('[type=text]');
-    console.log(textInputs);
-    
-    //let evenImputs = function disebInputs() {
-        if (startButt === true){
-            textInputs.disabled = true;
-        }else {
-            textInputs.disabled =false;
-        //}
-    }
-    startButt.addEventListener('click', function(event) {
-        if (appData.start === true){
-            startButt.style.display = 'none';
-        }
-            event.preventDefault();
-            console.log(event);
-            let target = event.target;
-            target.startButt = target.canselButt;
-            target.canselButt = target.startButt;
-            target.canselButt.reset();
-        });     
-    
-});
-  
-
+startButt.addEventListener('click', function() {
+let desabDatalInputs = document.querySelectorAll('.data input[type=text]').forEach(function(elem){elem.disabled = true})      
+});       
+canselButt.addEventListener('click', appData.cancelCalckRes); 
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('change', appData.inputTypeRange);
-
 salaryAmount.addEventListener('input', function() {
     if (salaryAmount.value === ''){
         startButt.disabled = true;
