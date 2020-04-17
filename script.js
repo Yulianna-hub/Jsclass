@@ -79,8 +79,7 @@ let appData = {
         targetMonthValue.value = Math.ceil(this.getTargetMonth());
         incomePeriodValue.value = this.calcSaveMoney();
         periodAmount.value = periodSelect.value;
-        periodSelect.addEventListener('change', this.chengeSaveMoney); 
-           
+        periodSelect.addEventListener('change', this.chengeSaveMoney.bind(this));
     },
     chengeSaveMoney: function() {
         incomePeriodValue.value = this.calcSaveMoney();
@@ -196,7 +195,23 @@ let appData = {
     cancelCalckRes:  function() {
         canselButt.style.display = 'none';
         startButt.style.display = 'block';
-        location.reload();
+        this.budgetDay = 0;
+        this.budgetMonth = 0;
+        this.expensesMonth = 0;
+        this.incomeMonth = 0;
+        this.budget = 0;
+        this.income = {};
+        this.addIncome = [];
+        this.expenses = {};
+        this.addExpenses = [];
+        this.deposit = false;
+        this.percentDeposit = 0;
+        this.moneyDeposit = 0;
+
+        document.querySelectorAll('input, button').forEach(elem=>elem.value = '');
+        document.querySelectorAll('input, button').forEach(elem=>elem.disabled = false);
+        document.querySelector('.period-amount').textContent = (event.target.value = 1);
+         
     }  
 };
 startButt.addEventListener('click', appData.start.bind(appData));      
@@ -207,6 +222,7 @@ periodSelect.addEventListener('change', appData.inputTypeRange);
 salaryAmount.addEventListener('input', function() {
     startButt.disabled = !salaryAmount.value.trim();
 });
+
 
 
 
