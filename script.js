@@ -210,7 +210,7 @@ let appData = {
 
         document.querySelectorAll('input, button').forEach(elem=>elem.value = '');
         document.querySelectorAll('input, button').forEach(elem=>elem.disabled = false);
-        document.querySelector('.period-amount').textContent = (event.target.value = 1);
+        startButt.disabled = true;
 
         let i = 0;
         expensesItems.forEach((el, i) => {
@@ -229,14 +229,13 @@ let appData = {
     }  
 };
 startButt.addEventListener('click', appData.start.bind(appData));      
-canselButt.addEventListener('click', appData.cancelCalckRes); 
+canselButt.addEventListener('click', appData.cancelCalckRes.bind(appData)); 
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('change', appData.inputTypeRange);
 salaryAmount.addEventListener('input', function() {
     startButt.disabled = !salaryAmount.value.trim();
 });
-
 
 
 
