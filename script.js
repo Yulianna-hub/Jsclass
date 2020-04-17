@@ -210,6 +210,7 @@ let appData = {
 
         document.querySelectorAll('input, button').forEach(elem=>elem.value = '');
         document.querySelectorAll('input, button').forEach(elem=>elem.disabled = false);
+        document.querySelector('.period-amount').textContent  = 1;
         startButt.disabled = true;
 
         let i = 0;
