@@ -211,6 +211,20 @@ let appData = {
         document.querySelectorAll('input, button').forEach(elem=>elem.value = '');
         document.querySelectorAll('input, button').forEach(elem=>elem.disabled = false);
         document.querySelector('.period-amount').textContent = (event.target.value = 1);
+
+        let i = 0;
+        expensesItems.forEach((el, i) => {
+            if (i !== 0) {
+              el.remove();
+            }
+          });
+          expensesPlus.style.display = "";
+          incomeItemms.forEach((el, i) => {
+            if (i !== 0) {
+              el.remove();
+            }
+          });
+          incomePlus.style.display = "";
          
     }  
 };
