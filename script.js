@@ -195,19 +195,7 @@ document.querySelector('.period-amount').textContent = (event.target.value);
 AppData.prototype.cancelCalckRes =  function() {
     canselButt.style.display = 'none';
     startButt.style.display = 'block';
-    this.budgetDay = 0;
-    this.budgetMonth = 0;
-    this.expensesMonth = 0;
-    this.incomeMonth = 0;
-    this.budget = 0;
-    this.income = {};
-    this.addIncome = [];
-    this.expenses = {};
-    this.addExpenses = [];
-    this.deposit = false;
-    this.percentDeposit = 0;
-    this.moneyDeposit = 0;
-
+    Object.assign(this, new AppData());
     document.querySelectorAll('input, button').forEach(elem=>elem.value = '');
     document.querySelectorAll('input, button').forEach(elem=>elem.disabled = false);
     document.querySelector('.period-amount').textContent  = 1;
@@ -225,24 +213,22 @@ AppData.prototype.cancelCalckRes =  function() {
           el.remove();
         }
       });
-      incomePlus.style.display = "";
-     
+      incomePlus.style.display = "";   
 };
-
-const appData = new AppData();
-console.log(appData);
-    
 AppData.prototype.eventListeners = function () {
-    startButt.addEventListener('click', this.start.bind(appData));      
-    canselButt.addEventListener('click', this.cancelCalckRes.bind(appData)); 
+    startButt.addEventListener('click', this.start.bind(this));      
+    canselButt.addEventListener('click', this.cancelCalckRes.bind(this)); 
     expensesPlus.addEventListener('click', this.addExpensesBlock);
     incomePlus.addEventListener('click', this.addIncomeBlock);
     periodSelect.addEventListener('change', this.inputTypeRange);
     salaryAmount.addEventListener('input', function() {
-        startButt.disabled = !salaryAmount.value.trim();
-        });
-    };
-AppData.prototype.eventListeners();
+    startButt.disabled = !salaryAmount.value.trim();
+    });
+};
+const appData = new AppData();
+console.log(appData);
+appData.eventListeners();   
+
 
    
     
