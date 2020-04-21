@@ -36,8 +36,8 @@ let isNumber = function(n) {
 let isstring = function(m) {
      return isNaN(m) || m !== '' || m === null;
 };
-
 const AppData = function () {
+    
     this.budgetDay = 0;
     this.budgetMonth = 0;
     this.expensesMonth = 0;
@@ -52,7 +52,6 @@ const AppData = function () {
     this.moneyDeposit = 0;
 
 };
-
 AppData.prototype.start = function () {
         startButt.style.display = 'none';
         canselButt.style.display = 'block';
@@ -71,7 +70,6 @@ AppData.prototype.start = function () {
         this.getBudget();
         this.showResult(); 
 };
-
 AppData.prototype.showResult = function() { 
     budgetMonthVallue.value = this.budgetMonth;
     budgetDayValue.value =  Math.ceil(this.budgetDay);
@@ -230,23 +228,28 @@ AppData.prototype.cancelCalckRes =  function() {
       incomePlus.style.display = "";
      
 };
-let _this = this;
+
 const appData = new AppData();
 console.log(appData);
-
+    
 AppData.prototype.eventListeners = function () {
-startButt.addEventListener('click', this.start.bind(appData));      
-canselButt.addEventListener('click', this.cancelCalckRes.bind(appData)); 
-expensesPlus.addEventListener('click', this.addExpensesBlock);
-incomePlus.addEventListener('click', this.addIncomeBlock);
-periodSelect.addEventListener('change', this.inputTypeRange);
-salaryAmount.addEventListener('input', function() {
-    startButt.disabled = !salaryAmount.value.trim();
-    });
-};
-
+    startButt.addEventListener('click', this.start.bind(appData));      
+    canselButt.addEventListener('click', this.cancelCalckRes.bind(appData)); 
+    expensesPlus.addEventListener('click', this.addExpensesBlock);
+    incomePlus.addEventListener('click', this.addIncomeBlock);
+    periodSelect.addEventListener('change', this.inputTypeRange);
+    salaryAmount.addEventListener('input', function() {
+        startButt.disabled = !salaryAmount.value.trim();
+        });
+    };
 AppData.prototype.eventListeners();
-console.log(AppData.prototype.eventListeners());
+
+   
+    
+ 
+
+
+
 
 
 
