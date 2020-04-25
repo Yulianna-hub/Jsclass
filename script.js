@@ -222,8 +222,7 @@ cancelCalckRes() {
     document.querySelectorAll('input, button').forEach(elem=>elem.disabled = false);
     document.querySelector('.period-amount').textContent  = 1;
     startButt.disabled = true;
-
-    const i = 0;
+    
     expensesItems.forEach((el, i) => {
         if (i !== 0) {
           el.remove();
