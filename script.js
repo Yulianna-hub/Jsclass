@@ -177,15 +177,12 @@ depositHandler() {
     if (depositCheck.checked) {
         depositBank.style.display = 'inline-block';
         depositAmount.style.display = 'inline-block';
-        //depositPercent.style.display = 'inline-block';
         this.deposit = true;
         depositBank.addEventListener('change', this.changePercent);
         
-    }else {
+    }else if (depositCheck.unchecked) {
         depositBank.style.display = 'none';
         depositAmount.style.display = 'none';
-        //depositPercent.style.display = 'none';
-        //depositPercent.value = '';
         depositBank.value = '';
         depositAmount.value = '';
         this. deposit = false;
@@ -198,18 +195,12 @@ getInfoDeposit() {
         this.moneyDeposit = depositAmount.value;
     }
 }
-chengePercent() {
+changePercent() {
     const valueSelect = this.value;
     if (valueSelect === 'other') {
         depositPercent.style.display = 'inline-block';
         this.deposit = true;
         depositBank.addEventListener('change', this.changePercent); 
-    }else if(valueSelect !== 'other') {
-        depositPercent.style.display = 'none';
-        depositPercent.value = '';
-        this. deposit = false;
-        depositBank.removeEventListener('change', this.changePercent);
-    
     }else {
         depositPercent.value = valueSelect;
     }
@@ -255,6 +246,7 @@ eventListeners() {
     startButt.disabled = !salaryAmount.value.trim();
     });
     depositCheck.addEventListener('change', this.depositHandler.bind(this));
+    depositBank.addEventListener('change', this.changePercent);
     depositPercent.addEventListener('input', function() {
         if (depositPercent.value < 0 || depositPercent.value > 100 || !isNumber) {
           alert ("Введите корректное значение в поле проценты"); 
@@ -263,6 +255,7 @@ eventListeners() {
             startButt.disabled = false;
         }
     }); 
+    
 }
 
 }
@@ -270,7 +263,6 @@ eventListeners() {
 const appData = new AppData();
 console.log(appData);
 appData.eventListeners();
-
 
  
 
