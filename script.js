@@ -180,9 +180,10 @@ depositHandler() {
         this.deposit = true;
         depositBank.addEventListener('change', this.changePercent);
         
-    }else if (depositCheck.unchecked) {
+    }else{
         depositBank.style.display = 'none';
         depositAmount.style.display = 'none';
+        depositPercent.style.display = 'none';
         depositBank.value = '';
         depositAmount.value = '';
         this. deposit = false;
@@ -234,7 +235,9 @@ cancelCalckRes() {
           el.remove();
         }
       });
-      incomePlus.style.display = "";   
+      incomePlus.style.display = "";
+      depositCheck.checked = false;
+      this.depositHandler();  
 }
 eventListeners() {
     startButt.addEventListener('click', this.start.bind(this));      
